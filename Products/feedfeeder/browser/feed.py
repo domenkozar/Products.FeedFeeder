@@ -83,6 +83,7 @@ class FeedFolderView(object):
                         title=x.Title,
                         summary=x.Description,
                         author=x.getFeedItemAuthor,
+                        text=x.getText,
                         has_text=x.getHasBody,
                         target_link=x.getLink,
                         )
