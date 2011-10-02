@@ -308,7 +308,7 @@ class FeedConsumer:
                                 obj.getPhysicalPath())
 
     def isHTMLEnclosure(self, enclosure):
-        return enclosure.type == u'text/html'
+        return getattr(enclosure, 'type', 'unknown') == u'text/html'
 
 
 def updateWithRemoteFile(obj, link):
@@ -343,7 +343,7 @@ def updateWithRemoteFile(obj, link):
 
         file.flush()
         file.seek(0)
-        obj.update_data(file, link.type)
+        obj.update_data(file, getattr(link, 'type', 'unknown'))
         file.close()
     except urllib2.URLError:
         # well, if we cannot retrieve the data, the file object will
