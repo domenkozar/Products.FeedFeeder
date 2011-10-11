@@ -29,7 +29,6 @@
 
       <tal:block repeat="child batch">
          <h3 class="feed-title"><a tal:attributes="href child/target_link">
-           <span tal:replace="structure child/author">Author</span>:
            <span tal:replace="structure child/title">My Title</span>
 	 </a></h3>
 	 <p>
