@@ -295,7 +295,12 @@ class FeedConsumer:
                 for link in real_enclosures:
                     enclosureSig = md5(link.href)
                     enclosureId = enclosureSig.hexdigest()
-                    enclosure = obj.addEnclosure(enclosureId)
+                    # enclusure might already exist:
+                    brains = obj.portal_catalog(id=enclosureId)
+                    if brains:
+                        enclosure = brains[0].getObject()
+                    else:
+                        enclosure = obj.addEnclosure(enclosureId)
                     enclosure.update(title=enclosureId)
                     updateWithRemoteFile(enclosure, link)
                     if enclosure.Title() != enclosure.getId():
