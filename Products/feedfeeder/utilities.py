@@ -219,6 +219,11 @@ class FeedConsumer:
                     content = entry.summary_detail
             if content:
                 if ctype in ('text/xhtml', 'application/xhtml+xml'):
+                    # archetypes don't differ between html and xhtml
+                    ctype = 'text/html'
+                    # if there is no encapsulated tag, minidom parse fails
+                    content['value'] = "<div>" + content['value'] + "</div>"
+
                     # Warning: minidom.parseString needs a byte
                     # string, not a unicode one, so we need to
                     # encode it first.
