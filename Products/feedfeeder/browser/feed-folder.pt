@@ -29,7 +29,7 @@
 
       <tal:block repeat="child batch">
          <h3 class="feed-title"><a tal:attributes="href child/target_link">
-           <span tal:replace="structure child/title">My Title</span>
+	   <span tal:replace="child/author/title"></span>: <span tal:replace="structure child/title"></span>
 	 </a></h3>
 	 <p>
 	     <i>Objavljeno ob <span tal:content="python:toLocalizedTime(child['updated_date'], long_format=1)" class="feed-date">2006-11-10</span></i>
